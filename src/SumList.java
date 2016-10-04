@@ -1,44 +1,37 @@
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class SumList {
-	public int val;
-	public SumList next;
-	public SumList(int val, SumList next){
-		this.val=val;
-		this.next=next;
-	}
-	public SumList(){
-		
-	}
+
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		SumList l3=new SumList(6,null);
-		SumList l2=new SumList(1,l3);
-		SumList l1=new SumList(7,l2);
 		
-		SumList m3=new SumList(2,null);
-		SumList m2=new SumList(9,m3);
-		SumList m1=new SumList(5,m2);
+		Queue<Integer>queue1=new LinkedList<Integer>();
+		Queue<Integer>queue2=new LinkedList<Integer>();
+		queue1.add(2);
+		queue1.add(4);
+		queue1.add(3);
 		
-		SumList res=new SumList(0,null);
+		queue2.add(5);
+		queue2.add(6);
+		queue2.add(4);
+		
+		Queue<Integer>res=new LinkedList<Integer>();
 		int carr=0;
-		//SumList start=res;
-		while(l1!=null){
-			SumList inter=new SumList();
-			int sum=m1.val+l1.val+carr;
-			if(sum>=10){
-				res.val=sum%10;
-				carr=sum/10;
+		while(!queue1.isEmpty()){
+			int val=queue1.poll()+queue2.poll();
+			if(val>=10){
+				res.add((val%10)+carr);
+				carr=val/10;
 			}
 			else{
-				res.val=sum;
-				carr=0;
+				res.add(val+carr);
 			}
-			res.next=inter;
-			//next=res;
-			m1=m1.next;
-			l1=l1.next;
 		}
-		System.out.println("Something");
+		while(!res.isEmpty()){
+			System.out.println(res.poll());
+		}
 	}
 	
 }
